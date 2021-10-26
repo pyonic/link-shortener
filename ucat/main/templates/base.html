@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title> {% block title %} {% endblock %} </title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<style>
+		a{
+			color: #011120;
+			font-weight: 500;
+			text-decoration: none;
+		}
+		td{
+			text-align: center;
+		}
+		i:hover{
+			cursor: pointer;
+			color:  red;
+		}
+		.table_header_item{
+			text-align: center;
+			color: white;
+			padding: 20px 0;
+			border-right;
+			font-weight: 600;
+		}
+		.table_header{
+			margin-top: 10px;
+			border-top-left-radius: 8px;
+			border-top-right-radius: 8px;
+		}
+		.link_item {
+			padding: 15px 0;
+		}
+		.link_item div{
+			text-align: center;
+			color: black !important;
+			font-weight: 600;
+		}
+		.link_item:nth-child(2n){
+			background:#ededed;
+		}
+		.link_item:last-child{
+			border-bottom-left-radius: 8px;
+			border-bottom-right-radius: 8px;
+		}
+	</style>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
+</head>
+<body>
+		<header>
+			<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			  <a class="navbar-brand" href="/">Ucat</a>
+			  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+			    <span class="navbar-toggler-icon"></span>
+			  </button>
+			  <div class="collapse navbar-collapse" id="navbarNav">
+			    <ul class="navbar-nav">
+			    	<li class="nav-item">
+				        <a class="nav-link" href="{% url 'main:index' %}">Главная</span></a>
+				     </li>
+			    	{% if request.user.id == Flase %}
+			    	  <li class="nav-item">
+				        <a class="nav-link" href="{% url 'main:signin' %}">Вход</span></a>
+				      </li>
+				      <li class="nav-item">
+				        <a class="nav-link" href="{% url 'main:register' %}">Регистрация</a>
+				      </li>
+			    	{% else %}
+				      <li class="nav-item">
+				        <a class="nav-link" href="{% url 'main:logout' %}">Выход</a>
+				      </li>
+				    {% endif %}
+			    </ul>
+			  </div>
+			</nav>
+		</header>
+		{% block content %}
+		{% endblock %}
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script>
+	var links = document.querySelectorAll('.link')
+	console.log(links)
+	links.forEach((link)=>{
+		if(link.innerHTML.length > 30) link.innerHTML = link.innerHTML.slice(0,30)+"..."
+	})
+</script>
+</body>
+</html>

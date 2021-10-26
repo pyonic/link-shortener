@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}
+	Пройти регистрацию
+{% endblock title %}
+
+{% load crispy_forms_filters %}
+
+{% block content %}
+	<center style="margin: 20px 0;"><h2>Регистария</h2></center>
+	<form method="POST"> 
+		{% csrf_token %}
+		{{ register_form|crispy}}
+		<button type="submit" class="btn btn-primary">Продолжить</button>
+	</form>
+	<p class="text-center">Уже есть аккаунт? <a href="{% url 'main:signin' %}"> Войти</a></p>
+{% endblock content %}
